@@ -1,0 +1,21 @@
+Data column 정리
+
+Listing ID (리스팅 식별 번호): Airbnb의 고유한 식별 번호
+Host ID (호스트 식별 번호): 호스트의 고유한 식별 번호
+Host Total Listings Count (호스트의 전체 리스트 수): 호스트가 보유한 총 리스트 수
+Longitude (경도): Airbnb의 지리적 경도
+Accommodates (수용 가능 인원): Airbnb가 수용할 수 있는 최대 인원 수
+Bathrooms (욕실 수): Airbnb에 포함된 욕실의 수
+Bedrooms (침실 수): Airbnb에 포함된 침실의 수
+Price (가격): Airbnb의 하루 평균 가격
+Minimum Nights (최소 숙박 일수): 게스트가 최소한으로 머무를 수 있는 날 수
+Maximum Nights (최대 숙박 일수): 게스트가 최대한으로 머무를 수 있는 날 수
+Availability 365 (365일 가용성): 연중 사용 가능한 날의 수
+Number of Reviews (리뷰 수): Airbnb에 대한 총 리뷰 수
+Review Scores Accuracy (정확도 리뷰 점수): 리스팅 페이지가 Airbnb를 정확하게 나타냈는지에 대한 점수
+Review Scores Cleanliness (청결도 리뷰 점수): 게스트가 느낀 Airbnb의 청결도 및 정돈에 대한 점수
+Review Scores Checkin (체크인 리뷰 점수): 체크인이 얼마나 순조로웠는지에 대한 점수
+Review Scores Communication (커뮤니케이션 리뷰 점수): 게스트가 숙박 전후에 호스트와 얼마나 원활하게 소통했는지에 대한 점수
+Review Scores Location (위치 리뷰 점수): 게스트가 동네에 대해 어떻게 느꼈는지에 대한 점수 (교통, 쇼핑 센터, 도심과의 근접성에 대한 정확한 설명 및 소음, 가족 안전과 같은 특별한 고려 사항 포함)
+Review Scores Value (가치 리뷰 점수): 게스트가 가격에 대해 해당 리스팅이 얼마나 가치 있는지 느꼈는지에 대한 점수
+Reviews per Month (월별 리뷰 수): 호스트가 매월 받는 리뷰 수
