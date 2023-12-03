@@ -1,0 +1,38 @@
+# pyspark 입력전에 
+export PYTHONIOENCODING=utf8
+
+pyspark
+
+df = spark.read.csv("/user/maria_dev/project/airbnb_ratings_new.csv", header="true", sep=",", inferSchema="true", encoding='MacRoman')
+
+df.show()
+
+# 컬럼명 확인
+df.columns
+
+# row 수 확인
+row_count = df.count()
+print(row_count)
+
+# 컬럼별 null의 수 
+from pyspark.sql.functions import col, sum
+df_null = df.select([sum(col(c).isNull().cast("int")).alias(c) for c in df.columns])
+df_null.show()
+
+df_dropna = df.dropna()
+
+# null 제거 후 row 수 확인
+row_count = df.count()
+print(row_count)
+
+# null 제거 후 null 수 확인
+df_null = df_dropna.select([sum(col(c).isNull().cast("int")).alias(c) for c in df_dropna.columns])
+df_null.show()
+
+# numeric column들과 price와의 상관관계 확인
+from pyspark.sql.types import DoubleType, FloatType, IntegerType
+from pyspark.sql.functions import corr
+numeric_columns = [c for c, t in df_dropna.dtypes if t in ['double', 'float', 'int']]
+for c in numeric_columns:
+    correlation = df_dropna.stat.corr('Price', c)
+    print("Correlation with Price and {}: {}".format(c, correlation))
