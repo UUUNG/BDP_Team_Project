@@ -1,0 +1,78 @@
+# pyspark 입력전에 
+export PYTHONIOENCODING=utf8
+
+pyspark
+
+df = spark.read.csv("/user/maria_dev/project/airbnb_ratings_new.csv", header="true", sep=",", inferSchema="true", encoding='MacRoman')
+
+df.show()
+
+# 컬럼명 확인
+df.columns
+
+# row 수 확인
+row_count = df.count()
+print(row_count)
+
+# 컬럼별 null의 수 
+from pyspark.sql.functions import col, sum
+df_null = df.select([sum(col(c).isNull().cast("int")).alias(c) for c in df.columns])
+df_null.show()
+
+df_dropna = df.dropna()
+
+# null 제거 후 row 수 확인
+row_count = df_dropna.count()
+print(row_count)
+
+# numeric column들과 price와의 상관관계 확인
+from pyspark.sql.types import DoubleType, FloatType, IntegerType
+from pyspark.sql.functions import corr
+numeric_columns = [c for c, t in df.dtypes if t in ['double', 'float', 'int']]
+for c in numeric_columns:
+    correlation = df_dropna.stat.corr('Price', c)
+    print("Correlation with Price and {}: {}".format(c, correlation))
+
+# 컬럼별 distinct value 수
+from pyspark.sql.functions import countDistinct
+from pyspark.sql.functions import col
+for c in df.columns:
+    distinct_count = df_dropna.agg(countDistinct(col(c)).alias("distinct_count")).collect()[0]["distinct_count"]
+    print("Distinct values counts {}: {}".format(c, distinct_count))
+
+df_dropna.createOrReplaceTempView("df_view")
+
+# country별 평균 가격
+country_prices = spark.sql("""
+    SELECT Country, AVG(Price) as AveragePrice
+    FROM df_view
+    GROUP BY Country
+    ORDER BY AveragePrice desc
+""")
+country_prices.show(country_prices.count())
+
+# property type별 평균 가격
+propertyType_prices = spark.sql("""
+    SELECT `Property type`, AVG(Price) as AveragePrice
+    FROM df_view
+    GROUP BY `Property type`
+    ORDER BY AveragePrice desc
+""")
+propertyType_prices.show(propertyType_prices.count())
+
+# room type별 평균 가격
+roomType_prices = spark.sql("""
+    SELECT `Room type`, AVG(Price) as AveragePrice
+    FROM df_view
+    GROUP BY `Room type`
+    ORDER BY AveragePrice desc
+""")
+roomType_prices.show(roomType_prices.count())
+
+# 컬럼 선택
+df_selected = df.select('Price', 'Country', 'Property type', 'Room type', 'Accommodates', 'Bathrooms', 'Bedrooms')
+
+df_selected = df_selected.dropna()
+
+row_count = df_selected.count()
+print(row_count)
