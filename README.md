@@ -18,3 +18,8 @@ https://www.kaggle.com/datasets/samyukthamurali/airbnb-ratings-dataset/download?
 3. Root Mean Squared Error (RMSE) - 평균 제곱근 오차
    - 예측값과 실제 값의 차이를 제곱한 후 평균을 구하고, 그 값의 제곱근을 구함.
    - RMSE 역시 작을수록 모델의 예측이 실제 값과 가깝다는 것을 의미.
+
+2. Reagressio 모델 생성 결과(2)
+   - 변수 분석 후 Review Scores Location 제외, Room Type 추가
+   - ![image](https://github.com/UUUNG/BDP_Team_Project/assets/52543621/4c1474d4-198b-42eb-80a2-f9b5cffcf23c)
+   - 0.5940271119420524, 47.28775292816959, 78.76177564874547로 성능이 더 좋아짐 (여전히 엄청 좋진 않음)
