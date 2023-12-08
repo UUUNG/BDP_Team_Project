@@ -1,0 +1,34 @@
+DataFrame[Price: int, Country: string, Property type: string, Room type: string, Accommodates: int, Bathrooms: double, Bedrooms: int, PropertyIndex: double, CountryIndex: double, RoomIndex: double, PropertyVec: vector, CountryVec: vector, RoomVec: vector]
+408697
+101453
+
+predDF: DataFrame[Accommodates: int, Bathrooms: double, Bedrooms: int, Price: int, PropertyVec: vector, CountryVec: vector, RoomVec: vector, weights: int, features: vector, prediction: double]
++------------------+-----+
+|        prediction|Price|
++------------------+-----+
+| 57.43936564646833|   26|
+|52.874235190263335|   45|
+| 57.43936564646833|   65|
+|26.428430074904895|   15|
+| 46.98908154233516|   18|
+| 46.98908154233516|   23|
+|26.428430074904895|   25|
+|26.428430074904895|   25|
+| 40.34824124161048|   26|
+| 56.13446281535357|   29|
+| 40.34824124161048|   29|
+| 57.47693120543909|   30|
+|  32.5620835013018|   30|
+| 57.47693120543909|   30|
+| 46.98908154233516|   35|
+| 56.13446281535357|   42|
+| 57.47693120543909|   50|
+| 53.73529125764799|   50|
+| 57.47693120543909|   50|
+|   70.400350440843|   50|
++------------------+-----+
+only showing top 20 rows
+
+r2:  0.9645095543917053
+mae:  21.545864444460694
+rmse:  27.796410320588326
